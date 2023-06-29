@@ -1,12 +1,11 @@
-from brands.web_scraper_com import WebScraperComIntegration
-from brands.twitter import TwitterIntegration
+from strategies.base_starter_strategy import Starter
+from strategies.twitter import TwitterFirstDataStrategy
+from strategies.web_scraper_com import WebScraperFirstDataStrategy, WebScraperGetAllDataStrategy
 
 if __name__ == '__main__':
-    integration = WebScraperComIntegration()
-    my_first_data = integration.execute("get_first_data")
-    print(my_first_data)
-    my_all_list = integration.execute("get_all_list")
-    print(my_all_list)
-    twitter_integration = TwitterIntegration()
-    twitter_first_data = twitter_integration.execute("get_first_data")
-    print(twitter_first_data)
+    starter = Starter(WebScraperFirstDataStrategy())
+    starter.execute()
+    starter = Starter(WebScraperGetAllDataStrategy())
+    starter.execute()
+    starter = Starter(TwitterFirstDataStrategy())
+    starter.execute()
